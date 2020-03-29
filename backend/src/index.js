@@ -13,7 +13,11 @@ app.use(express.json());
 socket_io.on('connection', socket => {
   console.log('We have a new connection!');
 
-  socket_io.on('disconnect', () => {
+  socket.on('join', ({ name, room }, callback) => {
+    console.log(name, room);
+  });
+
+  socket.on('disconnect', () => {
     console.log('User has left!');
   });
 });

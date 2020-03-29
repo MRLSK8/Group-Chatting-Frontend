@@ -16,7 +16,13 @@ export default function Chat() {
     setName(name);
     setRoom(room);
 
-    socket.emit('join', { name, room });
+    socket.emit('join', { name, room }, () => {});
+
+    return () => {
+      socket.emit('disconnect');
+      socket.off();
+      console.log('test');
+    };
   }, [location.search]);
 
   return <h1>Chat</h1>;
