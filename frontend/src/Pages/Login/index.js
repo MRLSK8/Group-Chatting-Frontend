@@ -11,24 +11,22 @@ export default function Login() {
     <div>
       <div>
         <h1>Join</h1>
-        <div>
+        <form>
           <input
             placeholder='Name'
             onChange={event => setName(event.target.value)}
           />
-        </div>
-        <div>
           <input
             placeholder='Room'
             onChange={event => setRoom(event.target.value)}
           />
-        </div>
-        <Link
-          onClick={event => (!name || !room ? event.preventDefault() : null)}
-          to={`/chat?name${name}&room=${room}`}
-        >
-          <button type='submit'>Sign In</button>
-        </Link>
+          <Link
+            onClick={event => (!name & !room ? event.preventDefault() : null)}
+            to={`/chat?name=${name}&room=${room}`}
+          >
+            <button type='submit'>Sign In</button>
+          </Link>
+        </form>
       </div>
     </div>
   );
