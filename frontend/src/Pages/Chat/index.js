@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
 import { useLocation } from 'react-router-dom';
-import socket from '../../services/socket.io';
+
+import socket from '../../Services/socket.io';
+
+import InfoBar from '../../Components/InfoBar/InfoBar';
+import Input from '../../Components/Input/Input';
 
 // import { Container } from './styles';
 
@@ -41,19 +45,14 @@ export default function Chat() {
     }
   };
 
-  console.log(messages, message);
-
   return (
     <div>
-      <div>
-        <input
-          value={message}
-          onChange={event => setMessage(event.target.value)}
-          onKeyPress={event =>
-            event.key === 'Enter' ? sendMessages(event) : null
-          }
-        />
-      </div>
+      <InfoBar room={room} />
+      <Input
+        message={message}
+        setMessage={setMessage}
+        sendMessages={sendMessages}
+      />
     </div>
   );
 }
