@@ -21,7 +21,7 @@ export default function Login() {
             onChange={event => setRoom(event.target.value)}
           />
           <Link
-            onClick={event => (!name & !room ? event.preventDefault() : null)}
+            onClick={event => (!name && !room) ? event.preventDefault() : null}
             to={`/chat?name=${name}&room=${room}`}
           >
             <button type='submit'>Sign In</button>

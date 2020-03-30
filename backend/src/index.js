@@ -29,12 +29,14 @@ socket_io.on('connection', socket => {
     });
 
     socket.broadcast
-      .to(user.room)
+      .to(room)
       .emit('message', { user: 'admin', text: `${user.name}, has joing.` });
 
     socket.join(user.room);
 
     callback();
+
+    console.log('User has joined!');
   });
 
   socket.on('sendMessage', (message, callback) => {

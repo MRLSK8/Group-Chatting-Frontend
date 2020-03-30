@@ -8,6 +8,9 @@ import socket from '../../services/socket.io';
 export default function Chat() {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState('');
+
   const location = useLocation();
 
   useEffect(() => {
@@ -21,9 +24,36 @@ export default function Chat() {
     return () => {
       socket.emit('disconnect');
       socket.off();
-      console.log('test');
     };
   }, [location.search]);
 
-  return <h1>Chat</h1>;
+  useEffect(() => {
+    socket.on('message', message => {
+      setMessages([...messages, message]);
+    });
+  }, [messages]);
+
+  const sendMessages = event => {
+    event.preventDefault();
+
+    if (message) {
+      socket.emit('sendMessage', message, () => setMessage(''));
+    }
+  };
+
+  console.log(messages, message);
+
+  return (
+    <div>
+      <div>
+        <input
+          value={message}
+          onChange={event => setMessage(event.target.value)}
+          onKeyPress={event =>
+            event.key === 'Enter' ? sendMessages(event) : null
+          }
+        />
+      </div>
+    </div>
+  );
 }
