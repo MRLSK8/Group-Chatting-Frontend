@@ -1,15 +1,19 @@
 const users = [];
 
+const trimAndLowerCase = require('./TrimAndLowerCaseString');
+
 const addUser = ({ id, name, room }) => {
-  name = name.trim().toLowerCase();
-  room = room.trim().toLowerCase();
+  const trimmedRoom = trimAndLowerCase(room);
+  const trimmedName = trimAndLowerCase(name);
 
   const existingUser = users.find(
-    user => user.room === room && user.name === name
+    user =>
+      trimAndLowerCase(user.room) === trimmedRoom &&
+      trimAndLowerCase(user.name) === trimmedName
   );
 
   if (existingUser) {
-    return { error: 'Username is taken!' };
+    return { error: 'Username is already taken!' };
   }
 
   const user = { id, name, room };
