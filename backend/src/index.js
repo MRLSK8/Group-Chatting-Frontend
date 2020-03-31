@@ -32,17 +32,22 @@ socket_io.on('connection', socket => {
       .to(user.room)
       .emit('message', { user: 'admin', text: `${user.name}, has joined.` });
 
+    socket_io
+      .to(user.room)
+      .emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
+
     socket.join(user.room);
 
     callback();
-
-    console.log('User has joined!');
   });
 
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id);
 
     socket_io.to(user.room).emit('message', { user: user.name, text: message });
+    socket_io
+      .to(user.room)
+      .emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
 
     callback();
   });
@@ -56,8 +61,6 @@ socket_io.on('connection', socket => {
         text: `${user.name} has left`
       });
     }
-
-    console.log('User has left!');
   });
 });
 

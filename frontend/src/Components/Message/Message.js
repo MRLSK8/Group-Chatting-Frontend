@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ReactEmoji from 'react-emoji';
+
 export default function Message({ message: { user, text }, name }) {
   let isSentByCurrentUser = false;
 
@@ -13,13 +15,13 @@ export default function Message({ message: { user, text }, name }) {
     <div>
       <p>{trimmedName}</p>
       <div>
-        <p>{text}</p>
+        <p>{ReactEmoji.emojify(text)}</p>
       </div>
     </div>
   ) : (
     <div>
       <div>
-        <p>{text}</p>
+        <p>{ReactEmoji.emojify(text)}</p>
       </div>
       <p>{user}</p>
     </div>
