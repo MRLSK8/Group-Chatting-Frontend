@@ -29,8 +29,8 @@ socket_io.on('connection', socket => {
     });
 
     socket.broadcast
-      .to(room)
-      .emit('message', { user: 'admin', text: `${user.name}, has joing.` });
+      .to(user.room)
+      .emit('message', { user: 'admin', text: `${user.name}, has joined.` });
 
     socket.join(user.room);
 
@@ -48,6 +48,15 @@ socket_io.on('connection', socket => {
   });
 
   socket.on('disconnect', () => {
+    const user = removeUser(socket.id);
+
+    if (user) {
+      socket_io.to(user.room).emit('message', {
+        user: 'admin',
+        text: `${user.name} has left`
+      });
+    }
+
     console.log('User has left!');
   });
 });

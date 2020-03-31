@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Input({ message, sendMessage, setMessage }) {
+export default function Input({ message, sendMessages, setMessage }) {
   return (
     <form>
       <input
@@ -8,13 +8,13 @@ export default function Input({ message, sendMessage, setMessage }) {
         placeholder='Type a message...'
         value={message}
         onKeyPress={event =>
-          event.key === 'Enter' ? sendMessage(event) : null
+          event.key === 'Enter' ? sendMessages(event) : null
         }
         onChange={event => {
           setMessage(event.target.value);
         }}
       />
-      <button onClick={event => sendMessage(event)}>Send</button>
+      <button onClick={event => sendMessages(event)}>Send</button>
     </form>
   );
 }

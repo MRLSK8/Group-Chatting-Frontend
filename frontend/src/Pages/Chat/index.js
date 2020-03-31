@@ -2,19 +2,20 @@ import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
 import { useLocation } from 'react-router-dom';
 
-import socket from '../../Services/socket.io';
-
 import InfoBar from '../../Components/InfoBar/InfoBar';
 import Input from '../../Components/Input/Input';
+import Messages from '../../Components/Messages/Messages';
 
-// import { Container } from './styles';
+/* Socket.io */
+import io from 'socket.io-client';
+let socket;
 
 export default function Chat() {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
-
+  const ENDPOINT = 'localhost:3333';
   const location = useLocation();
 
   useEffect(() => {
@@ -23,13 +24,15 @@ export default function Chat() {
     setName(name);
     setRoom(room);
 
+    socket = io(ENDPOINT);
+
     socket.emit('join', { name, room }, () => {});
 
     return () => {
       socket.emit('disconnect');
-      socket.off();
+      socket.close();
     };
-  }, [location.search]);
+  }, [ENDPOINT, location.search]);
 
   useEffect(() => {
     socket.on('message', message => {
@@ -48,6 +51,7 @@ export default function Chat() {
   return (
     <div>
       <InfoBar room={room} />
+      <Messages messages={messages} name={name} />
       <Input
         message={message}
         setMessage={setMessage}
