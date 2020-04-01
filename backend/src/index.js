@@ -32,12 +32,12 @@ io.on('connection', socket => {
       .to(user.room)
       .emit('message', { user: 'admin', text: `${user.name}, has joined.` });
 
+    socket.join(user.room);
+
     io.to(user.room).emit('roomData', {
       room: user.room,
       users: getUsersInRoom(user.room)
     });
-
-    socket.join(user.room);
 
     callback();
   });
@@ -62,6 +62,11 @@ io.on('connection', socket => {
       io.to(user.room).emit('message', {
         user: 'admin',
         text: `${user.name} has left`
+      });
+
+      io.to(user.room).emit('roomData', {
+        room: user.room,
+        users: getUsersInRoom(user.room)
       });
     }
   });
