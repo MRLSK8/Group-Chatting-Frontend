@@ -13,13 +13,17 @@ export default function Login() {
           <input
             placeholder='Name'
             onChange={event => setName(event.target.value)}
+            required
           />
           <input
             placeholder='Room'
             onChange={event => setRoom(event.target.value)}
+            required
           />
           <Link
-            onClick={event => (!name && !room ? event.preventDefault() : null)}
+            onClick={event =>
+              name === '' || room === '' ? event.preventDefault() : null
+            }
             to={`/chat?name=${name}&room=${room}`}
           >
             <button type='submit'>Sign In</button>
