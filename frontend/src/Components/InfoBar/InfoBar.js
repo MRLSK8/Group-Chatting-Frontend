@@ -1,6 +1,7 @@
 import React from 'react';
 import onlineIcon from '../../assets/onlineIcon.png';
 import closeIcon from '../../assets/closeIcon.png';
+import { Link } from 'react-router-dom';
 
 export default function InfoBar({ room }) {
   return (
@@ -9,9 +10,9 @@ export default function InfoBar({ room }) {
         <img src={onlineIcon} alt='Online Icon' />
         <h3>{room}</h3>
       </div>
-      <div>
-          <img src={closeIcon} alt='Close Icon' />
-      </div>
+      <Link to='/'>
+        <img src={closeIcon} alt='Close Icon' />
+      </Link>
     </div>
   );
 }
