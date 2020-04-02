@@ -1,35 +1,47 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { useFormState } from 'react-use-form-state';
+
+import { Container, Card, Title, Form } from './styles';
+
+import { FaUsers } from 'react-icons/fa';
 
 export default function Login() {
-  const [name, setName] = useState('');
-  const [room, setRoom] = useState('');
+  const [formState, { text }] = useFormState();
+  const history = useHistory();
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    if (formState.values.userName === '' || formState.values.roomName === '') {
+      alert('Both fields are required!');
+      history.push('/');
+    } else {
+      history.push(
+        `/chat?name=${formState.values.userName}&room=${formState.values.roomName}`
+      );
+    }
+  };
 
   return (
-    <div>
-      <div>
-        <h1>Join</h1>
-        <form>
+    <Container>
+      <Card>
+        <FaUsers size={75} color='#2F3061' style={{ marginTop: 35 }} />
+        <Title>
+          Join a <span>group</span> chat!
+        </Title>
+        <Form onSubmit={handleSubmit}>
           <input
-            placeholder='Name'
-            onChange={event => setName(event.target.value)}
+            placeholder='Username'
+            {...text('userName')}
             required
+            autoFocus
           />
-          <input
-            placeholder='Room'
-            onChange={event => setRoom(event.target.value)}
-            required
-          />
-          <Link
-            onClick={event =>
-              name === '' || room === '' ? event.preventDefault() : null
-            }
-            to={`/chat?name=${name}&room=${room}`}
-          >
-            <button type='submit'>Sign In</button>
-          </Link>
-        </form>
-      </div>
-    </div>
+          <input placeholder="Room's name" {...text('roomName')} required />
+
+          <button>Join In</button>
+        </Form>
+      </Card>
+    </Container>
   );
 }
