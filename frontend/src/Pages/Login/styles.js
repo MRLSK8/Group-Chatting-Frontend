@@ -100,6 +100,7 @@ export const Form = styled.form`
     padding: 8px;
     background-color: #2f3061;
     font-weight: bold;
+    letter-spacing: 1px;
     font-size: 14px;
     color: #f5f5f5;
     text-transform: uppercase;
