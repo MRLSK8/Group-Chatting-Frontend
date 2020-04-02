@@ -13,14 +13,9 @@ export default function Login() {
   const handleSubmit = event => {
     event.preventDefault();
 
-    if (formState.values.userName === '' || formState.values.roomName === '') {
-      alert('Both fields are required!');
-      history.push('/');
-    } else {
-      history.push(
-        `/chat?name=${formState.values.userName}&room=${formState.values.roomName}`
-      );
-    }
+    history.push(
+      `/chat?name=${formState.values.userName}&room=${formState.values.roomName}`
+    );
   };
 
   return (

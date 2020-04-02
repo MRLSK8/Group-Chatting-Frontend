@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import MyContext from '../../Contexts/Context';
 
-export default function Input({ message, sendMessages, setMessage }) {
+export default function Input() {
+  const { message, sendMessages, setMessage } = useContext(MyContext);
+
   return (
     <form>
       <input

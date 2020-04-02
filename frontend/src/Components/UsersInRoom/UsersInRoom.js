@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import MyContext from '../../Contexts/Context';
 
-export default function UsersInRoom({ usersInRoom }) {
+export default function UsersInRoom() {
+  const { usersInRoom } = useContext(MyContext);
+
   return (
     <ul>
       {usersInRoom?.users?.map(user => (

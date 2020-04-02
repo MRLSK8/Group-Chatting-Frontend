@@ -7,16 +7,18 @@ import Input from '../../Components/Input/Input';
 import Messages from '../../Components/Messages/Messages';
 import UsersInRoom from '../../Components/UsersInRoom/UsersInRoom';
 
+import MyContext from '../../Contexts/Context';
+
 import io from 'socket.io-client';
 const ENDPOINT = 'localhost:3333';
 let socket;
 
 export default function Chat() {
-  const [name, setName] = useState('');
-  const [room, setRoom] = useState('');
   const [usersInRoom, setUsersInRoom] = useState([]);
-  const [message, setMessage] = useState('');
+  const [userName, setUserName] = useState('');
+  const [roomName, setRoomName] = useState('');
   const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState('');
 
   const location = useLocation();
   const history = useHistory();
@@ -24,8 +26,8 @@ export default function Chat() {
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
 
-    setName(name);
-    setRoom(room);
+    setUserName(name);
+    setRoomName(room);
 
     socket = io(ENDPOINT);
 
@@ -64,16 +66,22 @@ export default function Chat() {
     }
   };
 
+  const allData = {
+    messages,
+    message,
+    userName,
+    roomName,
+    sendMessages,
+    setMessage,
+    usersInRoom
+  };
+
   return (
-    <div>
-      <InfoBar room={room} />
-      <Messages messages={messages} name={name} />
-      <Input
-        message={message}
-        setMessage={setMessage}
-        sendMessages={sendMessages}
-      />
-      <UsersInRoom usersInRoom={usersInRoom} />
-    </div>
+    <MyContext.Provider value={allData}>
+      <InfoBar />
+      <Messages />
+      <Input />
+      <UsersInRoom />
+    </MyContext.Provider>
   );
 }

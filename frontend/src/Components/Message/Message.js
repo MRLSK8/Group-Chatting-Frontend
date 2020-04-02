@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import ReactEmoji from 'react-emoji';
 
-export default function Message({ message: { user, text }, name }) {
+import MyContext from '../../Contexts/Context';
+
+export default function Message({ message: { user, text } }) {
+  const { userName } = useContext(MyContext);
   let isSentByCurrentUser = false;
 
-  const trimmedName = name.trim().toLowerCase();
+  const trimmedName = userName.trim().toLowerCase();
 
   if (trimmedName === user) {
     isSentByCurrentUser = true;
