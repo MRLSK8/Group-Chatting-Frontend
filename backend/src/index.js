@@ -9,23 +9,44 @@ const routes = require('./router');
 
 const {
   addUser,
+  checkIfUserExist,
   getUser,
   getUsersInRoom,
-  removeUser
+  removeUser,
 } = require('./utils/users');
 
 app.use(cors());
 app.use(express.json());
 
-io.on('connection', socket => {
-  socket.on('join', ({ name, room }, callback) => {
-    const { error, user } = addUser({ id: socket.id, name, room });
+io.on('connection', (socket) => {
+  function disconnectUser() {
+    const user = removeUser(socket.id);
 
-    if (error) return callback(error);
+    if (user) {
+      io.to(user.room).emit('message', {
+        user: 'admin',
+        text: `${user.name} has left`,
+      });
+
+      io.to(user.room).emit('roomData', {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
+    }
+  }
+
+  socket.on('check', ({ name, room }, callback) => {
+    const error = checkIfUserExist({ name, room });
+
+    callback(error);
+  });
+
+  socket.on('join', ({ name, room }, callback) => {
+    const { user } = addUser({ id: socket.id, name, room });
 
     socket.emit('message', {
       user: 'admin',
-      text: `${user.name}, welcome to the room ${user.room}.`
+      text: `${user.name}, welcome to the room ${user.room}.`,
     });
 
     socket.broadcast
@@ -36,7 +57,7 @@ io.on('connection', socket => {
 
     io.to(user.room).emit('roomData', {
       room: user.room,
-      users: getUsersInRoom(user.room)
+      users: getUsersInRoom(user.room),
     });
 
     callback();
@@ -49,27 +70,15 @@ io.on('connection', socket => {
 
     io.to(user.room).emit('roomData', {
       room: user.room,
-      users: getUsersInRoom(user.room)
+      users: getUsersInRoom(user.room),
     });
 
     callback();
   });
 
-  socket.on('disconnect', () => {
-    const user = removeUser(socket.id);
+  socket.on('logout', disconnectUser);
 
-    if (user) {
-      io.to(user.room).emit('message', {
-        user: 'admin',
-        text: `${user.name} has left`
-      });
-
-      io.to(user.room).emit('roomData', {
-        room: user.room,
-        users: getUsersInRoom(user.room)
-      });
-    }
-  });
+  socket.on('disconnect', disconnectUser);
 });
 
 app.use(routes);

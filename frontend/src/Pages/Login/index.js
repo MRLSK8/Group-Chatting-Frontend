@@ -6,15 +6,27 @@ import { Container, Card, Title, Form } from './styles';
 
 import { FaUsers } from 'react-icons/fa';
 
+import io from '../../services/io';
+
 export default function Login() {
   const [formState, { text }] = useFormState();
   const history = useHistory();
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    history.push(
-      `/chat?name=${formState.values.userName}&room=${formState.values.roomName}`
+    io.emit(
+      'check',
+      { name: formState.values.userName, room: formState.values.roomName },
+      (error) => {
+        if (error) {
+          alert(error.error);
+        } else {
+          history.push(
+            `/chat?name=${formState.values.userName}&room=${formState.values.roomName}`
+          );
+        }
+      }
     );
   };
 
