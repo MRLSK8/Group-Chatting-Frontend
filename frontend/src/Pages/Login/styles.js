@@ -16,7 +16,7 @@ export const Card = styled.div`
   align-items: center;
   border-radius: 8px;
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.25);
-  padding-top: 30px;
+  padding-top: 40px;
 
   width: 30%;
   height: 100vh;
@@ -49,12 +49,12 @@ export const Title = styled.h1`
   color: #343434;
   font-size: 35px;
   font-weight: normal;
-  margin-top: 15px;
+  margin-top: 10px;
 
   span {
     color: #2f3061;
     border-bottom: 2px solid #2f3061;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
   }
 
   @media (max-width: 450px) {
@@ -75,7 +75,7 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 45px;
+  margin: 35px;
   width: 100%;
 
   input[type='text'] {
@@ -167,4 +167,10 @@ export const GenderOptions = styled.div`
     margin-right: 20px;
     cursor: pointer;
   }
+`;
+
+export const UserNameAlreadyExist = styled.h4`
+  color: #d63031;
+  font-weight: 500;
+  margin-bottom: 2px;
 `;

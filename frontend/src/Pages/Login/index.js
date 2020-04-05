@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useFormState } from 'react-use-form-state';
 
-import { Container, Card, Title, Form, GenderOptions } from './styles';
+import {
+  Container,
+  Card,
+  Title,
+  Form,
+  GenderOptions,
+  UserNameAlreadyExist,
+} from './styles';
 
 import { FaUsers } from 'react-icons/fa';
 
@@ -12,20 +19,21 @@ export default function Login() {
   const [formState, { text, radio, label }] = useFormState({
     Gender: 'female',
   });
+  const [alreadyExist, setAlreadyExist] = useState('');
+
   const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    console.log(formState.values);
 
     io.emit(
       'check',
       { name: formState.values.userName, room: formState.values.roomName },
       (error) => {
         if (error) {
-          alert(error.error);
+          setAlreadyExist(error.error);
         } else {
+          setAlreadyExist('');
           history.push('/chat', formState.values);
         }
       }
@@ -40,6 +48,8 @@ export default function Login() {
           Join a <span>group</span> chat!
         </Title>
         <Form onSubmit={handleSubmit}>
+          {<UserNameAlreadyExist>{alreadyExist}</UserNameAlreadyExist>}
+
           <input
             placeholder='Username'
             {...text('userName')}
