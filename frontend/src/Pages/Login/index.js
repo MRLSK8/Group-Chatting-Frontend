@@ -2,14 +2,16 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useFormState } from 'react-use-form-state';
 
-import { Container, Card, Title, Form } from './styles';
+import { Container, Card, Title, Form, GenderOptions } from './styles';
 
 import { FaUsers } from 'react-icons/fa';
 
 import io from '../../services/io';
 
 export default function Login() {
-  const [formState, { text }] = useFormState();
+  const [formState, { text, radio, label }] = useFormState({
+    Options: 'female',
+  });
   const history = useHistory();
 
   const handleSubmit = (event) => {
@@ -33,7 +35,7 @@ export default function Login() {
   return (
     <Container>
       <Card>
-        <FaUsers size={75} color='#2F3061' style={{ marginTop: 35 }} />
+        <FaUsers size={85} color='#2F3061' />
         <Title>
           Join a <span>group</span> chat!
         </Title>
@@ -44,7 +46,20 @@ export default function Login() {
             required
             autoFocus
           />
+
           <input placeholder="Room's name" {...text('roomName')} required />
+
+          <GenderOptions>
+            <input {...radio('Options', 'female')} id='female' />
+            <label {...label('Options', 'female')} htmlFor='female'>
+              Female
+            </label>
+
+            <input {...radio('Options', 'male')} id='male' />
+            <label {...label('Options', 'male')} htmlFor='male'>
+              Male
+            </label>
+          </GenderOptions>
 
           <button>Join In</button>
         </Form>
