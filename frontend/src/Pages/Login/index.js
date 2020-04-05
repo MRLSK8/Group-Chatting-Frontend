@@ -26,10 +26,7 @@ export default function Login() {
         if (error) {
           alert(error.error);
         } else {
-          history.push(
-            `/chat?name=${formState.values.userName}&room=${formState.values.roomName}`,
-            formState.values
-          );
+          history.push('/chat', formState.values);
         }
       }
     );
