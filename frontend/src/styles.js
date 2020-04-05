@@ -15,7 +15,7 @@ export default createGlobalStyle`
   body {
     font-family: 'Roboto', sans-serif;
     font-size: 14px; 
-    background: #DFDFDF;
+    background: linear-gradient(160.09deg, rgba(47, 48, 97, 0) -33.64%, #2F3061 95.8%);
     color: #333;
     -webkit-font-smoothing: antialiased !important;
   }

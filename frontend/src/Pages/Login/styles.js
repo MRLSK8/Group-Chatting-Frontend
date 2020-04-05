@@ -14,13 +14,13 @@ export const Card = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.25);
 
   width: 30%;
   height: 65vh;
   max-height: 500px;
   max-width: 500px;
-  background-color: #bdc3c7;
+  background: linear-gradient(141.11deg, rgba(189, 195, 199, 0) -6.26%, #BDC3C7 100.71%);
 
   @media (max-width: 1200px) {
     width: 60%;
