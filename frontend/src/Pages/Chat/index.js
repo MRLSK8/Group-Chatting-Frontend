@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
-import queryString from 'query-string';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import InfoBar from '../../Components/InfoBar/InfoBar';
 import Input from '../../Components/Input/Input';
@@ -17,6 +16,7 @@ const INITIAL_STATE = {
   userName: '',
   roomName: '',
   message: '',
+  gender: '',
 };
 
 const reducer = (state, action) => {
@@ -26,6 +26,7 @@ const reducer = (state, action) => {
         ...state,
         userName: action.payload.userName,
         roomName: action.payload.roomName,
+        gender: action.payload.gender,
       };
     case 'USERS_IN_ROOM':
       return { ...state, usersInRoom: action.payload.usersInRoom };
@@ -42,17 +43,16 @@ export default function Chat() {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   const location = useLocation();
-  const history = useHistory();
 
   useEffect(() => {
-    const { name, room } = queryString.parse(location.search);
+    const { userName: name, roomName: room, Gender: gender } = location.state;
 
     dispatch({
       type: 'USERNAME_AND_ROOM',
-      payload: { userName: name, roomName: room },
+      payload: { userName: name, roomName: room, gender },
     });
 
-    io.emit('join', { name, room }, () => {});
+    io.emit('join', { name, room, gender }, () => {});
 
     io.on('roomData', (users) => {
       dispatch({ type: 'USERS_IN_ROOM', payload: { usersInRoom: users } });
@@ -61,7 +61,7 @@ export default function Chat() {
     return () => {
       io.emit('logout');
     };
-  }, [history, location.search]);
+  }, [location.state]);
 
   useEffect(() => {
     io.on('message', (message) => {
@@ -89,6 +89,7 @@ export default function Chat() {
   const allData = {
     userName: state.userName,
     roomName: state.roomName,
+    gender: state.gender,
     usersInRoom: state.usersInRoom,
     messages: state.messages,
     message: state.message,

@@ -10,12 +10,14 @@ import io from '../../services/io';
 
 export default function Login() {
   const [formState, { text, radio, label }] = useFormState({
-    Options: 'female',
+    Gender: 'female',
   });
   const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    console.log(formState.values);
 
     io.emit(
       'check',
@@ -25,7 +27,8 @@ export default function Login() {
           alert(error.error);
         } else {
           history.push(
-            `/chat?name=${formState.values.userName}&room=${formState.values.roomName}`
+            `/chat?name=${formState.values.userName}&room=${formState.values.roomName}`,
+            formState.values
           );
         }
       }
@@ -50,13 +53,13 @@ export default function Login() {
           <input placeholder="Room's name" {...text('roomName')} required />
 
           <GenderOptions>
-            <input {...radio('Options', 'female')} id='female' />
-            <label {...label('Options', 'female')} htmlFor='female'>
+            <input {...radio('Gender', 'female')} id='female' />
+            <label {...label('Gender', 'female')} htmlFor='female'>
               Female
             </label>
 
-            <input {...radio('Options', 'male')} id='male' />
-            <label {...label('Options', 'male')} htmlFor='male'>
+            <input {...radio('Gender', 'male')} id='male' />
+            <label {...label('Gender', 'male')} htmlFor='male'>
               Male
             </label>
           </GenderOptions>
