@@ -41,8 +41,8 @@ io.on('connection', (socket) => {
     callback(error);
   });
 
-  socket.on('join', ({ name, room }, callback) => {
-    const { user } = addUser({ id: socket.id, name, room });
+  socket.on('join', ({ name, room, gender }, callback) => {
+    const { user } = addUser({ id: socket.id, name, room, gender });
 
     socket.emit('message', {
       user: 'admin',

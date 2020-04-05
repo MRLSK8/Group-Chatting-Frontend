@@ -13,12 +13,12 @@ const checkIfUserExist = ({ name, room }) => {
   );
 
   if (existingUser) {
-    return { error: 'Username is already taken!' };
+    return { error: 'This username is already taken!' };
   }
 };
 
-const addUser = ({ id, name, room }) => {
-  const user = { id, name, room };
+const addUser = ({ id, name, room, gender }) => {
+  const user = { id, name, room, gender };
 
   users.push(user);
 
