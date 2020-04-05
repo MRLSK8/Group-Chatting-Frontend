@@ -89,7 +89,6 @@ export default function Chat() {
   const allData = {
     userName: state.userName,
     roomName: state.roomName,
-    gender: state.gender,
     usersInRoom: state.usersInRoom,
     messages: state.messages,
     message: state.message,
