@@ -1,21 +1,22 @@
 import React, { useContext } from 'react';
-import onlineIcon from '../../assets/onlineIcon.png';
-import closeIcon from '../../assets/closeIcon.png';
 import { Link } from 'react-router-dom';
 import MyContext from '../../Contexts/Context';
+import { FaReply, FaEllipsisH } from 'react-icons/fa';
+
+import { Container } from './styles';
 
 export default function InfoBar() {
   const { roomName } = useContext(MyContext);
 
   return (
-    <div>
-      <div>
-        <img src={onlineIcon} alt='Online Icon' />
-        <h3>{roomName}</h3>
-      </div>
+    <Container>
       <Link to='/'>
-        <img src={closeIcon} alt='Close Icon' />
+        <FaReply size={18} color='#F5F5F5' />
       </Link>
-    </div>
+
+      <h2>{roomName}</h2>
+
+      <FaEllipsisH size={22} color='#F5F5F5' />
+    </Container>
   );
 }
