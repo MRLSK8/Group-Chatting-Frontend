@@ -8,6 +8,8 @@ import UsersInRoom from '../../Components/UsersInRoom/UsersInRoom';
 
 import MyContext from '../../Contexts/Context';
 
+import { ChatArea, Container } from './styles';
+
 import io from '../../services/io';
 
 const INITIAL_STATE = {
@@ -98,10 +100,14 @@ export default function Chat() {
 
   return (
     <MyContext.Provider value={allData}>
-      <InfoBar />
-      <Messages />
-      <Input />
-      <UsersInRoom />
+      <Container>
+        <ChatArea>
+          <InfoBar />
+          <Messages />
+          <Input />
+        </ChatArea>
+      </Container>
+      {/* <UsersInRoom /> */}
     </MyContext.Provider>
   );
 }

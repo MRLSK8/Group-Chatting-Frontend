@@ -10,9 +10,7 @@ export default function Messages() {
   return (
     <ScrollToBottom>
       {messages.map((message, index) => (
-        <div key={index}>
-          <Message message={message}/>
-        </div>
+        <Message key={index} message={message} />
       ))}
     </ScrollToBottom>
   );
