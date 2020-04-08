@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: auto;
+  overflow-y: auto;
 `;
 
 export const Card = styled.div`

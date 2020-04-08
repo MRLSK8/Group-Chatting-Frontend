@@ -20,6 +20,6 @@ export const ChatArea = styled.div`
     #dfdfdf -95.01%,
     rgba(223, 223, 223, 0) 100%
   );
-  box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.45);
   border-radius: 8px;
 `;

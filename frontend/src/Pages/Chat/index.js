@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import InfoBar from '../../Components/InfoBar/InfoBar';
 import Input from '../../Components/Input/Input';
 import Messages from '../../Components/Messages/Messages';
-// import UsersInRoom from '../../Components/UsersInRoom/UsersInRoom';
+import UsersInRoom from '../../Components/UsersInRoom/UsersInRoom';
 
 import MyContext from '../../Contexts/Context';
 
@@ -104,13 +104,13 @@ export default function Chat() {
   return (
     <MyContext.Provider value={allData}>
       <Container>
+        <UsersInRoom />
         <ChatArea>
           <InfoBar />
           <Messages />
           <Input />
         </ChatArea>
       </Container>
-      {/* <UsersInRoom /> */}
     </MyContext.Provider>
   );
 }
