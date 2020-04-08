@@ -8,6 +8,7 @@ export const ContainerForm = styled.form`
     border-radius: 50px;
     border: 0;
     padding: 15px 20px;
+    padding-right: 45px;
     width: 100%;
     font-size: 15px;
   }
@@ -15,7 +16,7 @@ export const ContainerForm = styled.form`
   button {
     cursor: pointer;
     position: absolute;
-    right: 25px;
+    right: 20px;
     top: 13px;
     border: 0;
     background: transparent;

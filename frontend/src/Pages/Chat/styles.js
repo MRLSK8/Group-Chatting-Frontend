@@ -11,7 +11,7 @@ export const Container = styled.div`
 export const ChatArea = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   padding-bottom: 5px;
   width: 40%;
   height: 95vh;
