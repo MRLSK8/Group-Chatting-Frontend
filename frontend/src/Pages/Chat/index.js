@@ -35,7 +35,10 @@ const reducer = (state, action) => {
     case 'MESSAGE':
       return { ...state, message: action.payload.message };
     case 'MESSAGES':
-      return { ...state, messages: action.payload.messages };
+      return {
+        ...state,
+        messages: [...state.messages, action.payload.message],
+      };
     default:
       return state;
   }
@@ -69,14 +72,14 @@ export default function Chat() {
     io.on('message', (message) => {
       dispatch({
         type: 'MESSAGES',
-        payload: { messages: [...state.messages, message] },
+        payload: { message },
       });
     });
 
     io.on('roomData', (users) => {
       dispatch({ type: 'USERS_IN_ROOM', payload: { usersInRoom: users } });
     });
-  }, [state.messages]);
+  }, []);
 
   const sendMessages = (event) => {
     event.preventDefault();
