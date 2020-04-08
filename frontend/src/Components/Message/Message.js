@@ -4,7 +4,7 @@ import ReactEmoji from 'react-emoji';
 
 import MyContext from '../../Contexts/Context';
 
-import { OthersMessage, UserMessage } from './styles';
+import { AdminMessages, OthersUserMessages, UserMessages } from './styles';
 
 export default function Message({ message: { user, text } }) {
   const { userName } = useContext(MyContext);
@@ -13,17 +13,27 @@ export default function Message({ message: { user, text } }) {
   isSentByCurrentUser = userName.trim() === user;
 
   return isSentByCurrentUser ? (
-    <UserMessage>
+    <UserMessages>
       <div>
         <p>{ReactEmoji.emojify(text)}</p>
       </div>
-    </UserMessage>
+    </UserMessages>
   ) : (
-    <OthersMessage>
-      <div>
-        <h5>{user}</h5>
-        <p>{ReactEmoji.emojify(text)}</p>
-      </div>
-    </OthersMessage>
+    <>
+      {user !== 'admin' ? (
+        <OthersUserMessages>
+          <div>
+            <h5>{user}</h5>
+            <p>{ReactEmoji.emojify(text)}</p>
+          </div>
+        </OthersUserMessages>
+      ) : (
+        <AdminMessages>
+          <div>
+            <p>{ReactEmoji.emojify(text)}</p>
+          </div>
+        </AdminMessages>
+      )}
+    </>
   );
 }
