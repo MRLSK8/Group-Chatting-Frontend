@@ -1,20 +1,50 @@
 import styled from 'styled-components';
 
-export const AdminMessage = styled.div`
+export const OthersMessage = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 
-  h2 {
-    color: #2f3061;
+  div {
+    max-width: 85%;
+    background: #f5f5f5;
+    padding: 10px 15px;
+    line-height: 1.6em;
+    border-radius: 10px;
+    margin: 5px 20px;
+    overflow-wrap: break-word;
+
+    h5 {
+      font-style: italic;
+      text-transform: capitalize;
+      font-weight: normal;
+      font-size: 14px;
+      color: #bdc3c7;
+    }
+
+    p {
+      color: #343434;
+      font-weight: 500;
+    }
   }
 `;
 
 export const UserMessage = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding-right: 10px;
+  position: relative;
 
-  h2 {
-    color: red;
+  div {
+    max-width: 85%;
+    background: #f5f5f5;
+    padding: 10px 15px;
+    line-height: 1.6em;
+    border-radius: 10px;
+    margin: 5px 20px;
+    overflow-wrap: break-word;
+
+    p {
+      color: #343434;
+      font-weight: 500;
+    }
   }
 `;

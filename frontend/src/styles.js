@@ -23,4 +23,23 @@ export default createGlobalStyle`
   ul {
     list-style: none;
   }
+
+  *::-webkit-scrollbar {
+  width: 0.6em;
+  height: 0.6em;
+  margin-right: 50px;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(47, 48, 97, .3);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(47, 48, 97, .4);
+}
 `;

@@ -4,14 +4,20 @@ import Message from '../Message/Message';
 
 import MyContext from '../../Contexts/Context';
 
+import { Container } from './styles';
+
+import './style.css';
+
 export default function Messages() {
   const { messages } = useContext(MyContext);
 
   return (
-    <ScrollToBottom>
-      {messages.map((message, index) => (
-        <Message key={index} message={message} />
-      ))}
-    </ScrollToBottom>
+    <Container>
+      <ScrollToBottom className='scrollHeight'>
+        {messages.map((message, index) => (
+          <Message key={index} message={message} />
+        ))}
+      </ScrollToBottom>
+    </Container>
   );
 }

@@ -9,7 +9,6 @@ export const Container = styled.div`
 `;
 
 export const ChatArea = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
