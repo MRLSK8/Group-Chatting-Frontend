@@ -18,4 +18,8 @@ export const Container = styled.div`
     text-transform: capitalize;
     letter-spacing: 2px;
   }
+
+  div:hover {
+    cursor: not-allowed;
+  }
 `;

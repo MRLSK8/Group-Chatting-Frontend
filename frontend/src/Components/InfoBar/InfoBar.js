@@ -16,7 +16,9 @@ export default function InfoBar() {
 
       <h2>{roomName}</h2>
 
-      <FaEllipsisH size={22} color='#F5F5F5' />
+      <div>
+        <FaEllipsisH size={22} color='#F5F5F5' />
+      </div>
     </Container>
   );
 }
