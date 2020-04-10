@@ -23,7 +23,6 @@ export default function Login() {
 
   const history = useHistory();
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -55,10 +54,16 @@ export default function Login() {
             placeholder='Username'
             {...text('userName')}
             required
+            maxLength={30}
             autoFocus
           />
 
-          <input placeholder="Room's name" {...text('roomName')} required />
+          <input
+            placeholder="Room's name"
+            {...text('roomName')}
+            required
+            maxLength={30}
+          />
 
           <GenderOptions>
             <input {...radio('Gender', 'female')} id='female' />
