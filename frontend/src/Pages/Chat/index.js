@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 import InfoBar from '../../Components/InfoBar/InfoBar';
 import Input from '../../Components/Input/Input';
@@ -48,9 +48,18 @@ export default function Chat() {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
-    const { userName: name, roomName: room, Gender: gender } = location.state;
+    const {
+      userName: name,
+      roomName: room,
+      Gender: gender,
+    } = location.state ?? { name: null, room: null, gender: null };
+
+    if (!name || !room || !gender) {
+      history.push('/');
+    }
 
     dispatch({
       type: 'USERNAME_AND_ROOM',
