@@ -7,7 +7,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   overflow-y: auto;
-`;
+ `;
 
 export const Card = styled.div`
   display: flex;
@@ -42,6 +42,10 @@ export const Card = styled.div`
 
   @media (max-width: 450px) {
     width: 90%;
+  }
+
+  @media (max-width: 400px){
+    height: 90vh;
   }
 `;
 

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 25%;
-  height: 95vh;
+  width: 20%;
+  height: 90vh;
   border-radius: 8px;
   margin-right: 10px;
 
@@ -12,11 +12,24 @@ export const Container = styled.div`
     rgba(223, 223, 223, 0) 100%
   );
   box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.45);
+
+
+  @media (max-width: 1050px){
+    width: 30%;
+  }
+
+  @media (max-width: 900px){
+    width: 35%;
+  }
+
+  @media (max-width: 700px){
+    display: none;
+  }
 `;
 
 export const UsersInTheRoomHeader = styled.div`
   width: 100%;
-  height: 8%;
+  height: 10%;
   background-color: #2f3061;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
