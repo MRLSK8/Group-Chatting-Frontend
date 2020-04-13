@@ -23,7 +23,6 @@ export default function Input() {
             payload: { message: event.target.value },
           });
         }}
-        autoFocus
       />
 
       <button onClick={(event) => sendMessages(event)}>

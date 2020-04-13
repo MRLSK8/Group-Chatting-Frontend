@@ -19,6 +19,7 @@ const INITIAL_STATE = {
   roomName: '',
   message: '',
   gender: '',
+  showUsersInTheRoom: false,
 };
 
 const reducer = (state, action) => {
@@ -39,6 +40,8 @@ const reducer = (state, action) => {
         ...state,
         messages: [...state.messages, action.payload.message],
       };
+    case 'SHOW_USERS_IN_THE_ROOM':
+      return { ...state, showUsersInTheRoom: !state.showUsersInTheRoom };
     default:
       return state;
   }
@@ -59,22 +62,22 @@ export default function Chat() {
 
     if (!name || !room || !gender) {
       history.push('/');
+    } else {
+      dispatch({
+        type: 'USERNAME_AND_ROOM',
+        payload: { userName: name, roomName: room.toLowerCase(), gender },
+      });
+
+      io.emit('join', { name, room, gender }, () => {});
+
+      io.on('roomData', (users) => {
+        dispatch({ type: 'USERS_IN_ROOM', payload: { usersInRoom: users } });
+      });
+
+      return () => {
+        io.emit('logout');
+      };
     }
-
-    dispatch({
-      type: 'USERNAME_AND_ROOM',
-      payload: { userName: name, roomName: room.toLowerCase(), gender },
-    });
-
-    io.emit('join', { name, room, gender }, () => {});
-
-    io.on('roomData', (users) => {
-      dispatch({ type: 'USERS_IN_ROOM', payload: { usersInRoom: users } });
-    });
-
-    return () => {
-      io.emit('logout');
-    };
   }, [history, location.state]);
 
   useEffect(() => {
@@ -100,6 +103,10 @@ export default function Chat() {
     }
   };
 
+  const showUsersInTheRoom = () => {
+    dispatch({ type: 'SHOW_USERS_IN_THE_ROOM' });
+  };
+
   const allData = {
     userName: state.userName,
     roomName: state.roomName,
@@ -107,18 +114,25 @@ export default function Chat() {
     messages: state.messages,
     message: state.message,
     sendMessages,
+    showUsersInTheRoom,
     dispatch,
   };
 
   return (
     <MyContext.Provider value={allData}>
       <Container>
-        <UsersInRoom />
-        <ChatArea>
-          <InfoBar />
-          <Messages />
-          <Input />
-        </ChatArea>
+        {state.showUsersInTheRoom ? (
+          <UsersInRoom width={90} display={'block'} />
+        ) : (
+          <>
+            <UsersInRoom />
+            <ChatArea>
+              <InfoBar />
+              <Messages />
+              <Input />
+            </ChatArea>
+          </>
+        )}
       </Container>
     </MyContext.Provider>
   );

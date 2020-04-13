@@ -11,13 +11,17 @@ import {
 import Female from '../../assets/girl.svg';
 import male from '../../assets/male.svg';
 
-export default function UsersInRoom() {
+import Button from '../Button/Button';
+
+export default function UsersInRoom({ width, display }) {
   const { usersInRoom } = useContext(MyContext);
 
   return (
-    <Container>
+    <Container width={width} display={display}>
       <UsersInTheRoomHeader>
+        <div></div>
         <h2>Users In The Room</h2>
+        <Button />
       </UsersInTheRoomHeader>
 
       <UsersInRoomList>

@@ -13,30 +13,31 @@ export const Container = styled.div`
   );
   box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.45);
 
-
-  @media (max-width: 1050px){
+  @media (max-width: 1050px) {
     width: 30%;
   }
 
-  @media (max-width: 900px){
+  @media (max-width: 900px) {
     width: 35%;
   }
 
-  @media (max-width: 700px){
-    display: none;
+  @media (max-width: 700px) {
+    display: ${(props) => props.display || 'none'};
+    width: ${(props) => `${props.width}%`};
   }
 `;
 
 export const UsersInTheRoomHeader = styled.div`
   width: 100%;
-  height: 10%;
+  height: 9%;
+  min-height: 50px;
   background-color: #2f3061;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0 25px;
 
   H2 {
