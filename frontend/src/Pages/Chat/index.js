@@ -75,7 +75,7 @@ export default function Chat() {
     return () => {
       io.emit('logout');
     };
-  }, [location.state]);
+  }, [history, location.state]);
 
   useEffect(() => {
     io.on('message', (message) => {
