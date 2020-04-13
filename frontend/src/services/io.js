@@ -1,4 +1,4 @@
 import io from 'socket.io-client';
-const ENDPOINT = 'http://a0e03790.ngrok.io/';
+const ENDPOINT = 'http://localhost:3333';
 
 export default io(ENDPOINT);

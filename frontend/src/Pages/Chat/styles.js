@@ -45,7 +45,4 @@ export const ChatArea = styled.div`
     width: 90%;
   }
 
-  @media (max-width: 450px) {
-    height: 75vh;
-  }
 `;

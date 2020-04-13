@@ -63,7 +63,7 @@ export default function Chat() {
 
     dispatch({
       type: 'USERNAME_AND_ROOM',
-      payload: { userName: name, roomName: room, gender },
+      payload: { userName: name, roomName: room.toLowerCase(), gender },
     });
 
     io.emit('join', { name, room, gender }, () => {});

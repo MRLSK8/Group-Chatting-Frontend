@@ -19,7 +19,17 @@ export const Container = styled.div`
     letter-spacing: 2px;
   }
 
+  div {
+    visibility: hidden;
+  }
+
   div:hover {
-    cursor: not-allowed;
+    cursor: pointer;
+  }
+
+  @media (max-width: 700px) {
+    div {
+      visibility: visible;
+    }
   }
 `;
