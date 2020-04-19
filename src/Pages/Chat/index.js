@@ -68,7 +68,7 @@ export default function Chat() {
         payload: { userName: name, roomName: room.toLowerCase(), gender },
       });
 
-      io.emit('join', { name, room, gender }, () => {});
+      io.emit('joinRoom', { name, room, gender }, () => {});
 
       io.on('roomData', (users) => {
         dispatch({ type: 'USERS_IN_ROOM', payload: { usersInRoom: users } });

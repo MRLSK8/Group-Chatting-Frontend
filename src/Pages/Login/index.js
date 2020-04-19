@@ -27,7 +27,7 @@ export default function Login() {
     event.preventDefault();
 
     io.emit(
-      'check',
+      'checkIfUserExist',
       { name: formState.values.userName, room: formState.values.roomName },
       (error) => {
         if (error) {
