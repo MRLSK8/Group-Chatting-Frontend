@@ -1,6 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "GroupChatting",
+  "name": "Group Chat Application",
+  "scope": "/",
+  "lang": "pt-BR",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +21,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/?utm_source=homescreen",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#2f3061",
+  "background_color": "#2f3061"
 }
