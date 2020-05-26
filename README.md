@@ -12,7 +12,7 @@ Right on the left side, you can see all the users who are in the room with you.
 > PS: This is the standard for **desktop** devices or any other larger device.
 
 ![Login Page](src/assets/Gifs/Chatting.gif)   
-*On the left side, The application opened on a desktop device and, on the right, the app opened on a mobile phone.*
+*On the left side, the application opened on a desktop device and, on the right, the app opened on a mobile phone.*
 
 ## What about using the app on a mobile device?
 If you are using a cell phone or any other small screen device, just click on the three dots up in the top right corner, and you will see all the users who are in the room.
