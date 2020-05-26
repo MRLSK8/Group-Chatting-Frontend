@@ -11,7 +11,7 @@ Right on the left side, you can see all the users who are in the room with you.
 
 > PS: This is the standard for **desktop** devices or any other larger device.
 
-![Login Page](src/assets/Gifs/Chatting.gif)
+![Login Page](src/assets/Gifs/Chatting.gif)   
 *On the left side, The application opened on a desktop device and, on the right, the app opened on a mobile phone.*
 
 ## What about using the app on a mobile device?
