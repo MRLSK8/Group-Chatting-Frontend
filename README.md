@@ -1,5 +1,7 @@
 # Group Chatting Application
 ---
+## Demo
+https://group-chatting.netlify.com/
 
 ## Loging into the page
 When logging into the application, all users who are already logged in will be notified that a new user has just entered the room.
@@ -21,8 +23,12 @@ If you are using a cell phone or any other small screen device, just click on th
 
 ### Hit me up on one of my social medias :)
 
-- [Facebook](https://www.facebook.com/profile.php?id=100004301021977 'My facebook')
+[Facebook](https://www.facebook.com/profile.php?id=100004301021977 'My facebook')  |  [Instagram](https://www.instagram.com/mrlsk8/ 'My instagram')  |  [Linkedin](https://www.linkedin.com/in/mrlsk8/ 'My linkedin')
 
-- [Instagram](https://www.instagram.com/mrlsk8/ 'My instagram')
+## License :memo::
 
-- [Linkedin](https://www.linkedin.com/in/mrlsk8/ 'My linkedin')
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Author :man_technologist::
+
+Made with :heart: by **Marcelo Lima** 😊
